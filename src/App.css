@@ -1,0 +1,57 @@
+.page-shell { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding: 30px 24px 28px; }
+.converter { width: min(760px, 100%); align-self: center; justify-self: center; }
+.eyebrow { margin: 0 0 22px; color: #dfa956; font: 12px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 4px; }
+h1 { margin: 0; font: 400 clamp(52px, 9vw, 82px)/.95 Georgia, 'Times New Roman', serif; letter-spacing: -4px; }
+h1 span { color: #dfa956; }
+.description { max-width: 520px; margin: 24px 0 38px; color: #8f8e88; font-size: 15px; line-height: 1.7; }
+.download-form { display: flex; gap: 14px; }
+input, button { height: 68px; border-radius: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+input { flex: 1; min-width: 0; padding: 0 22px; border: 1px solid #44433d; outline: none; background: rgba(255,255,255,.015); color: #f2efe8; font-size: 13px; transition: border-color .2s, box-shadow .2s; }
+input::placeholder { color: #66655f; }
+input:focus { border-color: #dfa956; box-shadow: 0 0 0 1px #dfa956; }
+button { padding: 0 32px; border: 1px solid #dfa956; background: #dfa956; color: #171714; font-size: 13px; font-weight: 700; letter-spacing: 2px; white-space: nowrap; cursor: pointer; transition: background .2s, color .2s, transform .2s; }
+button:hover:not(:disabled) { background: transparent; color: #dfa956; }
+button:active:not(:disabled) { transform: translateY(2px); }
+button:disabled { opacity: .55; cursor: wait; }
+.status { min-height: 20px; margin: 18px 0 0; color: #dfa956; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 1px; }
+footer { justify-self: center; padding-top: 28px; color: #77766f; text-align: center; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 1.2px; }
+footer p { margin: 0 0 16px; font-size: 18px; }
+footer strong { color: #dfa956; font-weight: 900; }
+footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+footer a { color: #a09f97; font-size: 14px; text-decoration: none; }
+footer a:hover { color: #dfa956; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 650px) {
+  .page-shell {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding: max(28px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+  }
+  .converter {
+    width: 100%;
+    margin: clamp(72px, 15svh, 132px) 0 0;
+  }
+  .eyebrow { margin-bottom: 16px; font-size: 10px; letter-spacing: 2.5px; }
+  h1 {
+    font-size: clamp(40px, 13vw, 54px);
+    line-height: .98;
+    letter-spacing: -2.5px;
+    overflow-wrap: anywhere;
+  }
+  .description { margin: 18px 0 26px; font-size: 14px; line-height: 1.55; }
+  .download-form { flex-direction: column; gap: 14px; }
+  input, button { width: 100%; height: 64px; }
+  input { padding: 0 20px; font-size: 16px; }
+  button { padding: 0 20px; font-size: 14px; }
+  footer { margin-top: auto; padding-top: 44px; }
+  footer p { margin-bottom: 12px; font-size: 15px; }
+  footer nav { gap: 8px 10px; }
+  footer a { font-size: 12px; }
+}
+@media (max-width: 360px) {
+  .page-shell { padding-inline: 16px; }
+  .converter { margin-top: 56px; }
+  h1 { font-size: 39px; letter-spacing: -2px; }
+  .description { font-size: 13px; }
+}
