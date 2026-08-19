@@ -2,16 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 
-// LOCAL:
-// Leave VITE_API_URL empty.
-// Vite will proxy /download to localhost:3000.
-//
-// PRODUCTION:
-// VITE_API_URL=https://api.yourdomain.com
-
-const apiBaseUrl = (
-  import.meta.env.VITE_API_URL || ''
-).replace(/\/$/, '')
+const API_URL = import.meta.env.VITE_API_URL
 
 function App() {
   const [url, setUrl] = useState('')
@@ -52,7 +43,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `${apiBaseUrl}/download`,
+        `${API_URL}/download`,
         {
           method: 'POST',
           headers: {
