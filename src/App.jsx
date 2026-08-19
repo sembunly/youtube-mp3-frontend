@@ -60,6 +60,7 @@ function App() {
           },
           body: JSON.stringify({
             url: videoUrl,
+            quality,
           }),
         }
       )
