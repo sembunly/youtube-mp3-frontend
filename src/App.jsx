@@ -72,7 +72,7 @@ function App() {
 
         throw new Error(
           data.error ||
-            'API Backend Download failed. Please try again.'
+            ' Download failed. Please try again.'
         )
       }
 
