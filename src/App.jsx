@@ -4,12 +4,38 @@ import './App.css'
 
 const API_URL = import.meta.env.VITE_API_URL
 
+function getYouTubeVideoId(value) {
+  try {
+    const parsedUrl = new URL(value.trim())
+    const host = parsedUrl.hostname
+      .toLowerCase()
+      .replace(/^www\./, '')
+
+    let videoId = ''
+
+    if (host === 'youtu.be') {
+      videoId = parsedUrl.pathname.split('/')[1]
+    } else if (host === 'youtube.com') {
+      if (parsedUrl.pathname === '/watch') {
+        videoId = parsedUrl.searchParams.get('v') || ''
+      } else if (parsedUrl.pathname.startsWith('/shorts/')) {
+        videoId = parsedUrl.pathname.split('/')[2]
+      }
+    }
+
+    return /^[\w-]{11}$/.test(videoId) ? videoId : ''
+  } catch {
+    return ''
+  }
+}
+
 function App() {
   const [url, setUrl] = useState('')
   const [quality, setQuality] = useState('320')
   const [status, setStatus] = useState('')
   const [statusType, setStatusType] = useState('')
   const [isDownloading, setIsDownloading] = useState(false)
+  const videoId = getYouTubeVideoId(url)
 
   async function handlePaste() {
     try {
@@ -226,10 +252,24 @@ function App() {
           )}
         </div>
 
+        {videoId && (
+          <div className="video-preview">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title="YouTube video preview"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        )}
+
         <button
-          className="convert-btn"
+          className={`convert-btn ${
+            isDownloading ? 'is-loading' : ''
+          }`}
           type="submit"
           disabled={isDownloading}
+          aria-busy={isDownloading}
         >
           <span className="bars">
             <span />
